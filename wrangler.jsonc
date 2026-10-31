@@ -1,5 +1,5 @@
 {
-  "name": "ibrahim-elhofy",
+  "name": "portfolio",
   "compatibility_date": "2026-10-31", // Update to the day you deploy
   "assets": {
     "directory": "./dist"
