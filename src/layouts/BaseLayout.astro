@@ -1,10 +1,32 @@
 ---
-const { title, description = 'Business systems, AI workflows, and automation.', lang = 'en', page = '' } = Astro.props;
-const ar = lang === 'ar';
+import { getTranslations, getLocalePath, type Locale } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: Locale | string;
+  page?: string;
+}
+
+const {
+  title,
+  description = 'Business systems, AI workflows, and automation.',
+  lang = 'en',
+  page = ''
+} = Astro.props;
+
+const currentLang: Locale = lang === 'ar' ? 'ar' : 'en';
+const { t } = getTranslations(currentLang);
+const isAr = currentLang === 'ar';
+const oppositeLang: Locale = isAr ? 'en' : 'ar';
+const currentPath = page || Astro.url.pathname;
+const oppositePath = getLocalePath(currentPath, oppositeLang);
+const enPath = getLocalePath(currentPath, 'en');
+const arPath = getLocalePath(currentPath, 'ar');
 ---
 
 <!doctype html>
-<html lang={lang} dir={ar ? 'rtl' : 'ltr'}>
+<html lang={currentLang} dir={isAr ? 'rtl' : 'ltr'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -13,32 +35,33 @@ const ar = lang === 'ar';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="alternate" hreflang={ar ? 'en' : 'ar'} href={ar ? '/' : '/ar/'} />
+    <link rel="alternate" hreflang="en" href={enPath} />
+    <link rel="alternate" hreflang="ar" href={arPath} />
   </head>
   <body class="min-h-screen overflow-x-clip bg-[#090b0d] font-sans text-[#f2f5f7] antialiased">
     <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090b0d]/90 backdrop-blur-xl">
       <nav class="mx-auto flex h-[70px] w-[min(calc(100%-2rem),1180px)] items-center gap-5">
-        <a class="text-lg font-extrabold tracking-[-0.04em] transition hover:opacity-80" href={ar ? '/ar/' : '/'} aria-label={ar ? 'الصفحة الرئيسية' : 'Home'}>
-          <span class="text-[#92ffb8]">IE</span> / {ar ? 'حلول' : 'Solutions'}
+        <a class="text-lg font-extrabold tracking-[-0.04em] transition hover:opacity-80" href={isAr ? '/ar/' : '/'} aria-label={isAr ? 'الصفحة الرئيسية' : 'Home'}>
+          <span class="text-[#92ffb8]">{t.nav.logo}</span> / {t.nav.logoTag}
         </a>
         <div class="ml-auto flex items-center gap-5 text-sm text-[#98a3ad]">
-          <a class="transition hover:text-white" href={ar ? '/' : '/ar/'}>{ar ? 'English' : 'النسخة العربية'}</a>
-          <a class="rounded-full bg-[#92ffb8] px-4 py-2 text-xs font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="https://calendly.com/alhofeabrahem88/1hour" target="_blank" rel="noopener noreferrer">{ar ? 'استشارة مجانية' : 'Free consultation'}</a>
+          <a class="transition hover:text-white" href={oppositePath}>{t.nav.switchLangText}</a>
+          <a class="rounded-full bg-[#92ffb8] px-4 py-2 text-xs font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="https://calendly.com/alhofeabrahem88/1hour" target="_blank" rel="noopener noreferrer">{t.nav.consultation}</a>
         </div>
       </nav>
     </header>
     <main class="min-h-[calc(100vh-140px)]"><slot /></main>
     <footer class="border-t border-[#252c34] py-8 text-sm text-[#98a3ad]">
       <div class="mx-auto flex w-[min(calc(100%-2rem),1180px)] flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <span>© {new Date().getFullYear()} Ibrahim Elhofy</span>
+        <span>{t.footer.copyright}</span>
         <div class="flex flex-wrap items-center gap-6">
           <a class="inline-flex items-center gap-1.5 transition hover:text-white" href="/Ibrahim-Elhofy-CV.pdf" download>
             <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            {ar ? 'تحميل السيرة الذاتية' : 'Download CV'}
+            {t.footer.downloadCv}
           </a>
-          <span>{ar ? 'أنظمة أعمال وذكاء اصطناعي وأتمتة' : 'Business systems · AI · Automation'}</span>
+          <span>{t.footer.tagline}</span>
         </div>
       </div>
     </footer>

@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlider from '../../components/ImageSlider.astro';
+import { getTranslations, type Locale } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: undefined }, props: { locale: 'en' as Locale } },
+    { params: { locale: 'ar' }, props: { locale: 'ar' as Locale } },
+  ];
+}
+
+const { locale } = Astro.props;
+const { lang, t } = getTranslations(locale);
+---
+
+<BaseLayout title={t.meta.siteTitle} description={t.meta.siteDescription} lang={lang} page="/">
+  <section class="grid min-h-[75vh] place-items-center py-20">
+    <div class="mx-auto grid w-[min(calc(100%-2rem),1180px)] items-center gap-14 lg:grid-cols-[1.2fr_.8fr]">
+      <div>
+        <div class="mb-4 text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">{t.hero.badge}</div>
+        <h1 class="max-w-5xl text-5xl font-bold leading-[.93] tracking-[-.065em] sm:text-7xl lg:text-[6.7rem]">{t.hero.title} <span class="text-[#98a3ad]">{t.hero.titleHighlight}</span></h1>
+        <p class="mt-7 max-w-2xl text-lg text-[#98a3ad]">{t.hero.bio}</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="https://tally.so/r/DqBz65" target="_blank" rel="noopener noreferrer">{t.hero.cta}</a>
+        </div>
+      </div>
+      <div class="relative isolate order-first z-0 mx-auto h-[390px] w-full max-w-[430px] lg:order-none sm:h-[460px]">
+        {t.photos.map((photo, index) => (
+          <figure class:list={['absolute overflow-hidden rounded-2xl border border-white/15 bg-[#101419] p-2 shadow-2xl shadow-black/50 transition-transform duration-500 hover:z-40 hover:scale-105 hover:rotate-0', photo.position]}>
+            <img class="aspect-[4/5] w-full rounded-xl object-cover" src={photo.src} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="border-t border-[#252c34] py-20">
+    <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
+      <div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">{t.systemsSection.title}</h2>
+        <p class="text-lg text-[#98a3ad]">{t.systemsSection.subtitle}</p>
+      </div>
+      {t.systems.map((system) => (
+        <article id={system.id} class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]">
+          <div class="min-w-0">
+            <span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span>
+            <h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3>
+            <p class="mt-4 text-[#98a3ad]">{system.text}</p>
+            <p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p>
+            <a class="inline-flex rounded-full bg-[#92ffb8] px-4 py-2 text-sm font-bold text-[#071009]" href="https://tally.so/r/DqBz65" target="_blank" rel="noopener noreferrer">{t.systemsSection.cardCta}</a>
+          </div>
+          <div class="min-w-0 w-full max-w-full overflow-hidden">
+            <ImageSlider images={system.images} lang={lang} />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="work" class="border-t border-[#252c34] py-20">
+    <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
+      <div class="mb-14 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">{t.timelineSection.title}</h2>
+        <p class="text-lg text-[#98a3ad]">{t.timelineSection.subtitle}</p>
+      </div>
+
+      <div class="border-t border-[#252c34] pt-12">
+        <div class="mb-12 flex flex-col justify-between gap-4 border-b border-[#252c34] pb-8 md:flex-row md:items-end">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">{t.timelineSection.period}</span>
+            <h3 class="mt-2 text-3xl font-bold tracking-[-.04em] sm:text-4xl">{t.timelineSection.company}</h3>
+          </div>
+          <p class="text-sm font-semibold text-[#98a3ad]">{t.timelineSection.role}</p>
+        </div>
+
+        <div class="relative before:absolute before:bottom-0 before:left-3.5 before:top-0 before:w-px before:bg-[#252c34] rtl:before:left-auto rtl:before:right-3.5">
+          {t.timeline.map((entry) => (
+            <article id={entry.id} class="relative pb-14 pl-12 sm:pl-14 rtl:pl-0 rtl:pr-12 rtl:sm:pr-14 last:pb-0">
+              <span class="absolute left-3.5 top-0 z-10 grid size-7 -translate-x-1/2 place-items-center rounded-full border border-[#92ffb8]/40 bg-[#090b0d] text-xs font-bold text-[#92ffb8] rtl:left-auto rtl:right-3.5 rtl:translate-x-1/2">{entry.step}</span>
+              <div class="grid gap-6 md:grid-cols-[10rem_1fr] md:gap-8">
+                <div>
+                  <p class="text-sm font-bold text-white">{t.timelineSection.milestonePrefix} {entry.step}</p>
+                </div>
+                <div>
+                  <h4 class="text-3xl font-bold leading-none tracking-[-.05em]">{entry.title}</h4>
+                  <p class="mt-4 max-w-3xl text-[#98a3ad]">{entry.summary}</p>
+                  <ul class="mt-6 grid gap-3 text-sm text-[#c5cdd3] sm:grid-cols-2">
+                    {entry.achievements.map((achievement) => <li class="border-l rtl:border-l-0 rtl:border-r border-[#92ffb8]/50 pl-3 rtl:pl-0 rtl:pr-3">{achievement}</li>)}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-[#252c34] py-20">
+    <div class="relative mx-auto w-[min(calc(100%-2rem),1180px)] overflow-hidden rounded-3xl border border-[#252c34] bg-gradient-to-r from-[#11171b] via-[#101419] to-[#0c120f] px-8 sm:px-12 lg:px-14">
+      <div class="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-[#92ffb8]/10 blur-3xl rtl:right-auto rtl:left-10"></div>
+      <div class="grid items-center gap-8 md:grid-cols-[1.3fr_.7fr]">
+        <div class="relative z-10 pb-10 sm:pb-14">
+          <h2 class="max-w-xl text-4xl font-bold leading-none tracking-[-.055em] sm:text-5xl lg:text-[3.5rem]">{t.bottomCta.title}</h2>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="https://calendly.com/alhofeabrahem88/1hour" target="_blank" rel="noopener noreferrer">{t.bottomCta.consultation}</a>
+            <a class="rounded-full border border-[#252c34] px-5 py-3 font-bold transition hover:border-[#98a3ad]" href="https://tally.so/r/DqBz65" target="_blank" rel="noopener noreferrer">{t.bottomCta.quote}</a>
+          </div>
+        </div>
+        <div class="relative z-10 flex justify-center md:justify-end rtl:md:justify-start">
+          <img
+            class="h-[300px] w-auto max-w-[260px] object-contain object-bottom grayscale contrast-110 sm:h-[360px] sm:max-w-[300px] lg:h-[400px]"
+            src="/ibrahim-portrait.png"
+            alt="Ibrahim Elhofy"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
