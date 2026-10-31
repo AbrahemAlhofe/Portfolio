@@ -72,14 +72,14 @@ const experienceTimeline = [
       </div>
       {systems.map((system) => (
         <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]">
-          <div>
+          <div class="min-w-0">
             <span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span>
             <h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3>
             <p class="mt-4 text-[#98a3ad]">{system.text}</p>
             <p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p>
             <a class="inline-flex rounded-full bg-[#92ffb8] px-4 py-2 text-sm font-bold text-[#071009]" href="https://tally.so/r/DqBz65" target="_blank" rel="noopener noreferrer">Get a quote for a similar system</a>
           </div>
-          <div>
+          <div class="min-w-0 w-full max-w-full overflow-hidden">
             <ImageSlider images={system.images} lang="en" />
           </div>
         </article>

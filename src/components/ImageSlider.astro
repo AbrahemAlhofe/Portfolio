@@ -16,8 +16,8 @@ const hasMultiple = images.length > 1;
 ---
 
 {hasMultiple ? (
-  <div class="group relative overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20" data-slider>
-    <div class="relative overflow-hidden rounded-xl">
+  <div class="group relative w-full max-w-full min-w-0 overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20" data-slider>
+    <div class="relative w-full max-w-full overflow-hidden rounded-xl">
       <!-- Slides track -->
       <div
         class="slider-track flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -69,8 +69,8 @@ const hasMultiple = images.length > 1;
     </div>
 
     <!-- Caption & Dots Footer -->
-    <div class="flex items-center justify-between gap-3 px-2 pb-1 pt-3">
-      <figcaption class="truncate text-xs text-[#98a3ad]" data-slider-caption>
+    <div class="flex min-w-0 items-center justify-between gap-3 px-2 pb-1 pt-3">
+      <figcaption class="min-w-0 flex-1 truncate text-xs text-[#98a3ad]" data-slider-caption>
         {images[0]?.caption || images[0]?.alt}
       </figcaption>
 

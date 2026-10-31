@@ -15,7 +15,7 @@ const ar = lang === 'ar';
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="alternate" hreflang={ar ? 'en' : 'ar'} href={ar ? '/' : '/ar/'} />
   </head>
-  <body class="min-h-screen bg-[#090b0d] font-sans text-[#f2f5f7] antialiased">
+  <body class="min-h-screen overflow-x-clip bg-[#090b0d] font-sans text-[#f2f5f7] antialiased">
     <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090b0d]/90 backdrop-blur-xl">
       <nav class="mx-auto flex h-[70px] w-[min(calc(100%-2rem),1180px)] items-center gap-5">
         <a class="text-lg font-extrabold tracking-[-0.04em] transition hover:opacity-80" href={ar ? '/ar/' : '/'} aria-label={ar ? 'الصفحة الرئيسية' : 'Home'}>
