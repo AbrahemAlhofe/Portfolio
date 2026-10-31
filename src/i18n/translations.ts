@@ -77,9 +77,9 @@ export const content = {
         stats: '81,051 rows · 5+ databases · 40+ employees',
         service: 'Internal operations system',
         images: [
-          { src: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel', caption: 'Centralized production-management control panel' },
-          { src: '/case-studies/povo-production-record-detail.png', alt: 'Production record detail view & audit trail', caption: 'Production record detail view & audit trail' },
-          { src: '/case-studies/povo-queue-versions.png', alt: 'Queue versioning & stage transitions', caption: 'Queue versioning & stage transitions' },
+          { src: '/services/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel', caption: 'Centralized production-management control panel' },
+          { src: '/services/povo-production-record-detail.png', alt: 'Production record detail view & audit trail', caption: 'Production record detail view & audit trail' },
+          { src: '/services/povo-queue-versions.png', alt: 'Queue versioning & stage transitions', caption: 'Queue versioning & stage transitions' },
         ],
       },
       {
@@ -90,8 +90,8 @@ export const content = {
         stats: '50+ books · 250–320 pages · ~$3 per book',
         service: 'AI production and automation',
         images: [
-          { src: '/case-studies/povo-ai-workflow-automation.png', alt: 'Automated textbook generation workflow pipeline in n8n', caption: 'Automated generation & export pipeline' },
-          { src: '/case-studies/povo-ai-textbooks-dashboard.png', alt: 'Anova Textbooks production management dashboard', caption: 'Textbooks tracking & review dashboard' },
+          { src: '/services/povo-ai-workflow-automation.png', alt: 'Automated textbook generation workflow pipeline in n8n', caption: 'Automated generation & export pipeline' },
+          { src: '/services/povo-ai-textbooks-dashboard.png', alt: 'Anova Textbooks production management dashboard', caption: 'Textbooks tracking & review dashboard' },
         ],
       },
       {
@@ -102,9 +102,9 @@ export const content = {
         stats: '180,000+ annotations/yr · 0% data loss · AWS + Next.js + PostgreSQL',
         service: 'PDF proofing system',
         images: [
-          { src: '/case-studies/echo-pdf-proofing-workspace.png', alt: 'PDF proofing workspace with outlines and threaded review', caption: 'Document outlines, PDF text highlight, and threaded annotation panel' },
-          { src: '/case-studies/echo-pdf-comment-thread.png', alt: 'In-document contextual comment thread with error classification', caption: 'In-document feedback threads with color-coded classification tags' },
-          { src: '/case-studies/echo-pdf-share-dialog.png', alt: 'Document viewer link sharing and role-based access control', caption: 'Role-based viewer link sharing and document access control' },
+          { src: '/services/echo-pdf-proofing-workspace.png', alt: 'PDF proofing workspace with outlines and threaded review', caption: 'Document outlines, PDF text highlight, and threaded annotation panel' },
+          { src: '/services/echo-pdf-comment-thread.png', alt: 'In-document contextual comment thread with error classification', caption: 'In-document feedback threads with color-coded classification tags' },
+          { src: '/services/echo-pdf-share-dialog.png', alt: 'Document viewer link sharing and role-based access control', caption: 'Role-based viewer link sharing and document access control' },
         ],
       },
     ] as SystemCaseStudy[],
@@ -221,9 +221,9 @@ export const content = {
         stats: '81,051 سجلاً · 5+ قواعد بيانات · 40+ موظفاً',
         service: 'نظام تشغيل داخلي',
         images: [
-          { src: '/case-studies/povo-centralized-production-management.png', alt: 'واجهة نظام إدارة الإنتاج', caption: 'لوحة التحكم المركزية لإدارة الإنتاج' },
-          { src: '/case-studies/povo-production-record-detail.png', alt: 'تفاصيل سجل الإنتاج وسجل التدقيق', caption: 'تفاصيل سجل الإنتاج وسجل التدقيق' },
-          { src: '/case-studies/povo-queue-versions.png', alt: 'إدارة إصدارات ومراحل الطابور', caption: 'إدارة إصدارات ومراحل الطابور' },
+          { src: '/services/povo-centralized-production-management.png', alt: 'واجهة نظام إدارة الإنتاج', caption: 'لوحة التحكم المركزية لإدارة الإنتاج' },
+          { src: '/services/povo-production-record-detail.png', alt: 'تفاصيل سجل الإنتاج وسجل التدقيق', caption: 'تفاصيل سجل الإنتاج وسجل التدقيق' },
+          { src: '/services/povo-queue-versions.png', alt: 'إدارة إصدارات ومراحل الطابور', caption: 'إدارة إصدارات ومراحل الطابور' },
         ],
       },
       {
@@ -234,8 +234,8 @@ export const content = {
         stats: '50+ كتاباً · 250–320 صفحة · ~$3 للكتاب الواحد',
         service: 'الإنتاج والأتمتة بالذكاء الاصطناعي',
         images: [
-          { src: '/case-studies/povo-ai-textbooks-dashboard.png', alt: 'لوحة متابعة ومراجعة الإنتاج', caption: 'لوحة متابعة ومراجعة الإنتاج' },
-          { src: '/case-studies/povo-ai-workflow-automation.png', alt: 'مسار أتمتة وتوليد الكتب', caption: 'مسار أتمتة وتوليد الكتب في n8n' },
+          { src: '/services/povo-ai-textbooks-dashboard.png', alt: 'لوحة متابعة ومراجعة الإنتاج', caption: 'لوحة متابعة ومراجعة الإنتاج' },
+          { src: '/services/povo-ai-workflow-automation.png', alt: 'مسار أتمتة وتوليد الكتب', caption: 'مسار أتمتة وتوليد الكتب في n8n' },
         ],
       },
       {
@@ -246,9 +246,9 @@ export const content = {
         stats: '180,000+ تعليق سنوي · 0% فقدان بيانات · AWS + Next.js + PostgreSQL',
         service: 'نظام مراجعة وتدقيق PDF',
         images: [
-          { src: '/case-studies/echo-pdf-proofing-workspace.png', alt: 'واجهة نظام تدقيق ومراجعة ملفات PDF', caption: 'فهرس المستند، تحديد النصوص، ولوحة الملاحظات المترابطة' },
-          { src: '/case-studies/echo-pdf-comment-thread.png', alt: 'نافذة إضافة الملاحظات وتصنيفها', caption: 'محادثات الملاحظات وتصنيف الأخطاء (لغوية، فنية)' },
-          { src: '/case-studies/echo-pdf-share-dialog.png', alt: 'مشاركة المستندات مع فرق العمل', caption: 'إدارة مشاركة المستندات وصلاحيات العرض عبر الأجهزة' },
+          { src: '/services/echo-pdf-proofing-workspace.png', alt: 'واجهة نظام تدقيق ومراجعة ملفات PDF', caption: 'فهرس المستند، تحديد النصوص، ولوحة الملاحظات المترابطة' },
+          { src: '/services/echo-pdf-comment-thread.png', alt: 'نافذة إضافة الملاحظات وتصنيفها', caption: 'محادثات الملاحظات وتصنيف الأخطاء (لغوية، فنية)' },
+          { src: '/services/echo-pdf-share-dialog.png', alt: 'مشاركة المستندات مع فرق العمل', caption: 'إدارة مشاركة المستندات وصلاحيات العرض عبر الأجهزة' },
         ],
       },
     ] as SystemCaseStudy[],
