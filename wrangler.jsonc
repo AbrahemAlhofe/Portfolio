@@ -1,7 +1,7 @@
 {
-  "name": "my-astro-app",
-  "compatibility_date": "YYYY-MM-DD", // Update to the day you deploy
+  "name": "ibrahim-elhofy",
+  "compatibility_date": "2026-10-31", // Update to the day you deploy
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist"
   }
 }
