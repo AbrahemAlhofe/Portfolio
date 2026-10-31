@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const heroPhotos = [
+  { src: '/hero-photos/keynote.jpeg', alt: 'Ibrahim Elhofy speaking at an event', position: 'left-0 top-0 z-30 w-[66%] -rotate-3' },
+  { src: '/hero-photos/team.jpeg', alt: 'Ibrahim Elhofy with collaborators', position: 'right-0 top-[15%] z-20 w-[62%] rotate-3' },
+  { src: '/hero-photos/meeting.jpeg', alt: 'Ibrahim Elhofy at a professional meeting', position: 'bottom-0 left-[14%] z-10 w-[64%] -rotate-1' }
+];
+const systems = [
+  { tag: 'Operations transformation', title: 'Centralized production management', text: 'Replaced fragmented spreadsheets with a unified environment for production tracking, workflow coordination, permissions, and reporting.', stats: '81,051 rows · 5+ databases · 40+ employees', href: '/work#operations', image: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel' },
+  { tag: 'AI & automation', title: 'AI-powered book production', text: 'A repeatable operation combining structured AI writing, production tracking, automated PDF creation, and employee workflows.', stats: '50+ books · 250–320 pages · ~$3 per book', href: '/work#ai-books' }
+];
+---
+
+<BaseLayout title="Ibrahim Elhofy — Business Solutions Developer" page="/">
+  <section class="grid min-h-[75vh] place-items-center py-20">
+    <div class="mx-auto grid w-[min(calc(100%-2rem),1180px)] items-center gap-14 lg:grid-cols-[1.2fr_.8fr]">
+      <div>
+        <div class="mb-4 text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Business Solutions Developer · Cairo</div>
+        <h1 class="max-w-5xl text-5xl font-bold leading-[.93] tracking-[-.065em] sm:text-7xl lg:text-[6.7rem]">I build systems that make businesses <span class="text-[#98a3ad]">move.</span></h1>
+        <p class="mt-7 max-w-2xl text-lg text-[#98a3ad]">Self-driven engineer leading business growth through AI, automation, and internal systems—connecting operational reality with the right technology.</p>
+        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="/work">Explore the work →</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/services">Services for businesses</a></div>
+      </div>
+      <div class="relative isolate z-0 mx-auto h-[390px] w-full max-w-[430px] sm:h-[460px]">
+        {heroPhotos.map((photo, index) => <figure class:list={['absolute overflow-hidden rounded-2xl border border-white/15 bg-[#101419] p-2 shadow-2xl shadow-black/50 transition-transform duration-500 hover:z-40 hover:scale-105 hover:rotate-0', photo.position]}><img class="aspect-[4/5] w-full rounded-xl object-cover" src={photo.src} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} /></figure>)}
+      </div>
+    </div>
+  </section>
+  <section class="border-t border-[#252c34] py-16"><div class="mx-auto grid w-[min(calc(100%-2rem),1180px)] gap-4 md:grid-cols-3">{[['92%','Production output growth'],['40%','QA productivity improvement'],['3 days','System built and deployed']].map(([metric,label]) => <div class="rounded-2xl border border-[#252c34] bg-[#101419] p-7"><b class="block text-4xl tracking-[-.06em]">{metric}</b><span class="text-sm text-[#98a3ad]">{label}</span></div>)}</div></section>
+  <section class="border-t border-[#252c34] py-20"><div class="mx-auto w-[min(calc(100%-2rem),1180px)]"><div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]"><h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Selected systems.</h2><p class="text-lg text-[#98a3ad]">Business-critical platforms shaped by real production environments—not hypothetical portfolio exercises.</p></div>{systems.map((system) => <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]"><div><span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span><h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3><p class="mt-4 text-[#98a3ad]">{system.text}</p><p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p><a class="inline-flex rounded-full border border-[#252c34] px-4 py-2 text-sm font-bold" href={system.href}>Read case study</a></div>{system.image ? <figure class="overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20"><img class="aspect-video w-full rounded-xl object-cover object-top" src={system.image} alt={system.alt} loading="lazy" /><figcaption class="px-2 pb-1 pt-3 text-xs text-[#98a3ad]">Centralized production-management control panel</figcaption></figure> : <div class="grid min-h-72 place-items-center rounded-2xl border border-[#252c34] bg-[radial-gradient(circle_at_20%_20%,rgba(146,255,184,.1),transparent_35%),#101419] text-xs tracking-[.13em] text-[#71808b]">APPROVED SYSTEM SCREENSHOT</div>}</article>)}</div></section>
+  <section class="border-t border-[#252c34] py-20"><div class="mx-auto flex w-[min(calc(100%-2rem),1180px)] flex-col justify-between gap-6 rounded-3xl border border-[#252c34] bg-gradient-to-r from-[#11171b] to-[#0e1511] p-10 md:flex-row md:items-center"><h2 class="max-w-2xl text-4xl font-bold leading-none tracking-[-.055em]">Have an operation that has outgrown spreadsheets?</h2><div class="flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="mailto:ibrahim.ali.elhofy@gmail.com?subject=Free%201-hour%20consultation">Book a free 1-hour consultation</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/quote">Get a quote</a></div></div></section>
+</BaseLayout>

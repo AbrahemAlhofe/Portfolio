@@ -1,0 +1,42 @@
+---
+const { title, description = 'Business systems, AI workflows, and automation.', lang = 'en', page = '' } = Astro.props;
+const ar = lang === 'ar';
+const prefix = ar ? '/ar' : '';
+const pages = ar
+  ? [['الرئيسية', '/ar/'], ['الخدمات', '/ar/services'], ['الأعمال', '/ar/work']]
+  : [['Home', '/'], ['Services', '/services'], ['Work', '/work']];
+---
+
+<!doctype html>
+<html lang={lang} dir={ar ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="alternate" hreflang={ar ? 'en' : 'ar'} href={ar ? '/' : '/ar/'} />
+  </head>
+  <body class="min-h-screen bg-[#090b0d] font-sans text-[#f2f5f7] antialiased">
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090b0d]/90 backdrop-blur-xl">
+      <nav class="mx-auto flex h-[70px] w-[min(calc(100%-2rem),1180px)] items-center gap-5">
+        <a class="text-lg font-extrabold tracking-[-0.04em]" href={prefix || '/'}>
+          <span class="text-[#92ffb8]">IE</span> / {ar ? 'حلول' : 'Solutions'}
+        </a>
+        <div class="ml-auto flex items-center gap-4 text-sm text-[#98a3ad]">
+          {pages.map(([label, href]) => <a class:list={['hidden transition hover:text-white sm:block', { 'text-white': page === href }]} href={href}>{label}</a>)}
+          <a class="transition hover:text-white" href={ar ? '/' : '/ar/'}>{ar ? 'English' : 'العربية'}</a>
+          <a class="hidden transition hover:text-white md:block" href="/Ibrahim-Elhofy-CV.pdf" download>{ar ? 'السيرة الذاتية' : 'Download CV'}</a>
+          <a class="hidden rounded-full bg-[#92ffb8] px-4 py-2 text-xs font-bold text-[#071009] sm:inline-flex" href="mailto:ibrahim.ali.elhofy@gmail.com?subject=Free%201-hour%20consultation">{ar ? 'استشارة مجانية' : 'Free consultation'}</a>
+        </div>
+      </nav>
+    </header>
+    <main class="min-h-[calc(100vh-140px)]"><slot /></main>
+    <footer class="border-t border-[#252c34] py-8 text-sm text-[#98a3ad]">
+      <div class="mx-auto flex w-[min(calc(100%-2rem),1180px)] flex-col justify-between gap-2 sm:flex-row">
+        <span>© {new Date().getFullYear()} Ibrahim Elhofy</span>
+        <span>{ar ? 'أنظمة أعمال وذكاء اصطناعي وأتمتة' : 'Business systems · AI · Automation'}</span>
+      </div>
+    </footer>
+    <style is:global>@import "tailwindcss";</style>
+  </body>
+</html>

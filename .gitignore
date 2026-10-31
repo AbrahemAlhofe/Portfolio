@@ -1,0 +1,5 @@
+.sites/
+*.tgz
+node_modules
+dist/
+.pnpm-store/
