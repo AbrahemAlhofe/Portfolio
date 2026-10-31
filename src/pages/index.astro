@@ -57,14 +57,14 @@ const experienceTimeline = [
         <div class="mb-4 text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Business Solutions Developer · Cairo</div>
         <h1 class="max-w-5xl text-5xl font-bold leading-[.93] tracking-[-.065em] sm:text-7xl lg:text-[6.7rem]">I build systems that make businesses <span class="text-[#98a3ad]">move.</span></h1>
         <p class="mt-7 max-w-2xl text-lg text-[#98a3ad]">Self-driven engineer leading business growth through AI, automation, and internal systems—connecting operational reality with the right technology.</p>
-        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="#work">Explore the work →</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/services">Services for businesses</a></div>
+        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="/quote">Get a quote →</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold transition hover:border-[#98a3ad]" href="/services">Services for businesses</a></div>
       </div>
       <div class="relative isolate order-first z-0 mx-auto h-[390px] w-full max-w-[430px] lg:order-none sm:h-[460px]">
         {heroPhotos.map((photo, index) => <figure class:list={['absolute overflow-hidden rounded-2xl border border-white/15 bg-[#101419] p-2 shadow-2xl shadow-black/50 transition-transform duration-500 hover:z-40 hover:scale-105 hover:rotate-0', photo.position]}><img class="aspect-[4/5] w-full rounded-xl object-cover" src={photo.src} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} /></figure>)}
       </div>
     </div>
   </section>
-  <section class="border-t border-[#252c34] py-20">
+  <section id="services" class="border-t border-[#252c34] py-20">
     <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
       <div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
         <h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Services.</h2>
