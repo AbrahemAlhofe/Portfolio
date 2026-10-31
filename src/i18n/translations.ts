@@ -67,6 +67,7 @@ export const content = {
       title: 'Services.',
       subtitle: 'Operational systems and AI-enabled workflows shaped by real production environments.',
       cardCta: 'Get a quote for a similar system',
+      privacyNotice: 'Data in screenshots has been replaced with dummy data in respect of our clients\' privacy.',
     },
     systems: [
       {
@@ -211,6 +212,7 @@ export const content = {
       title: 'العمل بالتفصيل.',
       subtitle: 'من تشخيص التعطّل التشغيلي حتى إطلاق أنظمة يعتمد عليها الفريق يومياً.',
       cardCta: 'اطلب عرضاً لنظام مشابه',
+      privacyNotice: 'تم استبدال البيانات في لقطات الشاشة ببيانات وهمية احتراماً لخصوصية عملائنا.',
     },
     systems: [
       {
