@@ -1,13 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageSlider from '../components/ImageSlider.astro';
 const heroPhotos = [
   { src: '/hero-photos/keynote.jpeg', alt: 'Ibrahim Elhofy speaking at an event', position: 'left-0 top-0 z-30 w-[66%] -rotate-3' },
   { src: '/hero-photos/team.jpeg', alt: 'Ibrahim Elhofy with collaborators', position: 'right-0 top-[15%] z-20 w-[62%] rotate-3' },
   { src: '/hero-photos/meeting.jpeg', alt: 'Ibrahim Elhofy at a professional meeting', position: 'bottom-0 left-[14%] z-10 w-[64%] -rotate-1' }
 ];
 const systems = [
-  { tag: 'Operations transformation', title: 'Centralized production management', text: 'Replaced fragmented spreadsheets with a unified environment for production tracking, workflow coordination, permissions, and reporting.', stats: '81,051 rows · 5+ databases · 40+ employees', service: 'Internal operations system', image: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel' },
-  { tag: 'AI & automation', title: 'AI-powered book production', text: 'A repeatable operation combining structured AI writing, production tracking, automated PDF creation, and employee workflows.', stats: '50+ books · 250–320 pages · ~$3 per book', service: 'AI production and automation' }
+  {
+    tag: 'Operations transformation',
+    title: 'Centralized production management',
+    text: 'Replaced fragmented spreadsheets with a unified environment for production tracking, workflow coordination, permissions, and reporting.',
+    stats: '81,051 rows · 5+ databases · 40+ employees',
+    service: 'Internal operations system',
+    images: [
+      { src: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel', caption: 'Centralized production-management control panel' },
+      { src: '/case-studies/povo-production-record-detail.png', alt: 'Production record detail view & audit trail', caption: 'Production record detail view & audit trail' },
+      { src: '/case-studies/povo-queue-versions.png', alt: 'Queue versioning & stage transitions', caption: 'Queue versioning & stage transitions' }
+    ]
+  },
+  {
+    tag: 'AI & automation',
+    title: 'AI-powered book production',
+    text: 'A repeatable operation combining structured AI writing, production tracking, automated PDF creation, and employee workflows.',
+    stats: '50+ books · 250–320 pages · ~$3 per book',
+    service: 'AI production and automation',
+    images: [
+      { src: '/case-studies/povo-ai-textbooks-dashboard.png', alt: 'Anova Textbooks production management dashboard', caption: 'Textbooks tracking & review dashboard' },
+      { src: '/case-studies/povo-ai-workflow-automation.png', alt: 'Automated textbook generation workflow pipeline in n8n', caption: 'Automated generation & export pipeline' }
+    ]
+  }
 ];
 const experienceTimeline = [
   { id: 'operations', step: '01', title: 'Business process transformation & operational excellence', summary: 'Independently analyzed production operations, identified bottlenecks and fragmented workflows, and led process reengineering, digital adoption, and continuous optimization.', achievements: ['Increased monthly production output 92%, from 456 to 876 production hours.', 'Improved QA productivity 40% and reduced reporting turnaround from 3 days to minutes.', 'Led rollout, employee training, and iterative improvement for 40+ employees.', 'Delivered scalable, cost-efficient digital operations with role-based access and version history.'] },
@@ -30,34 +52,86 @@ const experienceTimeline = [
       </div>
     </div>
   </section>
-  <section class="border-t border-[#252c34] py-20"><div class="mx-auto w-[min(calc(100%-2rem),1180px)]"><div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]"><h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Services.</h2><p class="text-lg text-[#98a3ad]">Operational systems and AI-enabled workflows shaped by real production environments.</p></div>{systems.map((system) => <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]"><div><span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span><h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3><p class="mt-4 text-[#98a3ad]">{system.text}</p><p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p><a class="inline-flex rounded-full bg-[#92ffb8] px-4 py-2 text-sm font-bold text-[#071009]" href={`/quote?service=${encodeURIComponent(system.service)}`}>Get a quote for a similar system</a></div>{system.image ? <figure class="overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20"><img class="aspect-video w-full rounded-xl object-cover object-top" src={system.image} alt={system.alt} loading="lazy" /><figcaption class="px-2 pb-1 pt-3 text-xs text-[#98a3ad]">Centralized production-management control panel</figcaption></figure> : <div class="grid min-h-72 place-items-center rounded-2xl border border-[#252c34] bg-[radial-gradient(circle_at_20%_20%,rgba(146,255,184,.1),transparent_35%),#101419] text-xs tracking-[.13em] text-[#71808b]">APPROVED SYSTEM SCREENSHOT</div>}</article>)}</div></section>
+  <section class="border-t border-[#252c34] py-20">
+    <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
+      <div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Services.</h2>
+        <p class="text-lg text-[#98a3ad]">Operational systems and AI-enabled workflows shaped by real production environments.</p>
+      </div>
+      {systems.map((system) => (
+        <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span>
+            <h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3>
+            <p class="mt-4 text-[#98a3ad]">{system.text}</p>
+            <p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p>
+            <a class="inline-flex rounded-full bg-[#92ffb8] px-4 py-2 text-sm font-bold text-[#071009]" href={`/quote?service=${encodeURIComponent(system.service)}`}>Get a quote for a similar system</a>
+          </div>
+          <div>
+            <ImageSlider images={system.images} lang="en" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
   <section id="work" class="border-t border-[#252c34] py-20">
     <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
-      <div class="mb-12 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
-        <div><p class="text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Aug 2023 - Present · Povo Studios</p><h2 class="mt-4 text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Professional experience.</h2></div>
-        <p class="text-lg text-[#98a3ad]">Full Stack Engineer, R&D Department. A chronological record of self-initiated operational transformation, AI operations, and technical leadership—measured by business outcomes.</p>
+      <div class="mb-14 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Professional experience.</h2>
+        <p class="text-lg text-[#98a3ad]">A chronological record of self-initiated operational transformation, AI operations, and technical leadership—measured by business outcomes.</p>
       </div>
-      <div class="relative before:absolute before:bottom-0 before:left-3.5 before:top-0 before:w-px before:bg-[#252c34]">
-        {experienceTimeline.map((entry) => (
-          <article id={entry.id} class="relative pb-14 pl-12 sm:pl-14 last:pb-0">
-            <span class="absolute left-3.5 top-0 z-10 grid size-7 -translate-x-1/2 place-items-center rounded-full border border-[#92ffb8]/40 bg-[#090b0d] text-xs font-bold text-[#92ffb8]">{entry.step}</span>
-            <div class="grid gap-6 md:grid-cols-[10rem_1fr] md:gap-8">
-              <div>
-                <p class="text-sm font-bold text-[#c5cdd3]">Povo Studios</p>
-                <p class="mt-1 text-xs uppercase tracking-[.13em] text-[#92ffb8]">Milestone {entry.step}</p>
+
+      <div class="border-t border-[#252c34] pt-12">
+        <div class="mb-12 flex flex-col justify-between gap-4 border-b border-[#252c34] pb-8 md:flex-row md:items-end">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Aug 2023 – Present</span>
+            <h3 class="mt-2 text-3xl font-bold tracking-[-.04em] sm:text-4xl">Povo Studios</h3>
+          </div>
+          <p class="text-sm font-semibold text-[#98a3ad]">Business Solutions Developer · R&D Department</p>
+        </div>
+
+        <div class="relative before:absolute before:bottom-0 before:left-3.5 before:top-0 before:w-px before:bg-[#252c34]">
+          {experienceTimeline.map((entry) => (
+            <article id={entry.id} class="relative pb-14 pl-12 sm:pl-14 last:pb-0">
+              <span class="absolute left-3.5 top-0 z-10 grid size-7 -translate-x-1/2 place-items-center rounded-full border border-[#92ffb8]/40 bg-[#090b0d] text-xs font-bold text-[#92ffb8]">{entry.step}</span>
+              <div class="grid gap-6 md:grid-cols-[10rem_1fr] md:gap-8">
+                <div>
+                  <p class="text-sm font-bold text-white">Milestone {entry.step}</p>
+                </div>
+                <div>
+                  <h4 class="text-3xl font-bold leading-none tracking-[-.05em]">{entry.title}</h4>
+                  <p class="mt-4 max-w-3xl text-[#98a3ad]">{entry.summary}</p>
+                  <ul class="mt-6 grid gap-3 text-sm text-[#c5cdd3] sm:grid-cols-2">
+                    {entry.achievements.map((achievement) => <li class="border-l border-[#92ffb8]/50 pl-3">{achievement}</li>)}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3 class="text-3xl font-bold leading-none tracking-[-.05em]">{entry.title}</h3>
-                <p class="mt-4 max-w-3xl text-[#98a3ad]">{entry.summary}</p>
-                <ul class="mt-6 grid gap-3 text-sm text-[#c5cdd3] sm:grid-cols-2">
-                  {entry.achievements.map((achievement) => <li class="border-l border-[#92ffb8]/50 pl-3">{achievement}</li>)}
-                </ul>
-              </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
-  <section class="border-t border-[#252c34] py-20"><div class="mx-auto flex w-[min(calc(100%-2rem),1180px)] flex-col justify-between gap-6 rounded-3xl border border-[#252c34] bg-gradient-to-r from-[#11171b] to-[#0e1511] p-10 md:flex-row md:items-center"><h2 class="max-w-2xl text-4xl font-bold leading-none tracking-[-.055em]">Have an operation that has outgrown spreadsheets?</h2><div class="flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="mailto:ibrahim.ali.elhofy@gmail.com?subject=Free%201-hour%20consultation">Book a free 1-hour consultation</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/quote">Get a quote</a></div></div></section>
+  <section class="border-t border-[#252c34] py-20">
+    <div class="relative mx-auto w-[min(calc(100%-2rem),1180px)] overflow-hidden rounded-3xl border border-[#252c34] bg-gradient-to-r from-[#11171b] via-[#101419] to-[#0c120f] px-8 sm:px-12 lg:px-14">
+      <div class="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-[#92ffb8]/10 blur-3xl"></div>
+      <div class="grid items-center gap-8 md:grid-cols-[1.3fr_.7fr]">
+        <div class="relative z-10 pb-10 sm:pb-14">
+          <h2 class="max-w-xl text-4xl font-bold leading-none tracking-[-.055em] sm:text-5xl lg:text-[3.5rem]">Have an operation that has outgrown spreadsheets?</h2>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009] transition hover:bg-[#7be6a1]" href="mailto:ibrahim.ali.elhofy@gmail.com?subject=Free%201-hour%20consultation">Book a free 1-hour consultation</a>
+            <a class="rounded-full border border-[#252c34] px-5 py-3 font-bold transition hover:border-[#98a3ad]" href="/quote">Get a quote</a>
+          </div>
+        </div>
+        <div class="relative z-10 flex justify-center md:justify-end">
+          <img
+            class="h-[300px] w-auto max-w-[260px] object-contain object-bottom grayscale contrast-110 sm:h-[360px] sm:max-w-[300px] lg:h-[400px]"
+            src="/ibrahim-portrait.png"
+            alt="Ibrahim Elhofy"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

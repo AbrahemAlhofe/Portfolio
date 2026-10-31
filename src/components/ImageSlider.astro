@@ -1,0 +1,205 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  images: ImageItem[];
+  lang?: 'en' | 'ar';
+}
+
+const { images = [], lang = 'en' } = Astro.props;
+const isRtl = lang === 'ar';
+const hasMultiple = images.length > 1;
+---
+
+{hasMultiple ? (
+  <div class="group relative overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20" data-slider>
+    <div class="relative overflow-hidden rounded-xl">
+      <!-- Slides track -->
+      <div
+        class="slider-track flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        data-slider-track
+      >
+        {images.map((img, i) => (
+          <div
+            class="slider-slide relative aspect-video w-full flex-shrink-0 snap-center select-none"
+            data-slider-slide
+            data-caption={img.caption || img.alt}
+          >
+            <img
+              class="size-full rounded-xl object-cover object-top"
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Arrow Controls -->
+      <button
+        type="button"
+        class="slider-prev absolute left-3 top-1/2 z-20 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/80 active:scale-95 disabled:pointer-events-none disabled:opacity-0"
+        aria-label={isRtl ? 'الصورة السابقة' : 'Previous slide'}
+        data-slider-prev
+      >
+        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="slider-next absolute right-3 top-1/2 z-20 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/80 active:scale-95 disabled:pointer-events-none disabled:opacity-0"
+        aria-label={isRtl ? 'الصورة التالية' : 'Next slide'}
+        data-slider-next
+      >
+        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Badge counter on image -->
+      <div class="pointer-events-none absolute bottom-3 right-3 z-20 rounded-full border border-white/10 bg-black/70 px-2.5 py-0.5 text-[11px] font-semibold text-white/90 backdrop-blur-md" data-slider-counter>
+        1 / {images.length}
+      </div>
+    </div>
+
+    <!-- Caption & Dots Footer -->
+    <div class="flex items-center justify-between gap-3 px-2 pb-1 pt-3">
+      <figcaption class="truncate text-xs text-[#98a3ad]" data-slider-caption>
+        {images[0]?.caption || images[0]?.alt}
+      </figcaption>
+
+      <!-- Interactive Dot Indicators -->
+      <div class="flex flex-shrink-0 items-center gap-1.5" role="tablist" aria-label="Slider indicators">
+        {images.map((_, i) => (
+          <button
+            type="button"
+            class:list={[
+              'h-1.5 rounded-full transition-all duration-300',
+              i === 0 ? 'w-5 bg-[#92ffb8]' : 'w-1.5 bg-white/30 hover:bg-white/60'
+            ]}
+            aria-label={`Slide ${i + 1}`}
+            data-slider-dot={i}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+) : images.length === 1 ? (
+  <figure class="overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20">
+    <img
+      class="aspect-video w-full rounded-xl object-cover object-top"
+      src={images[0].src}
+      alt={images[0].alt}
+      loading="lazy"
+    />
+    <figcaption class="px-2 pb-1 pt-3 text-xs text-[#98a3ad]">
+      {images[0].caption || images[0].alt}
+    </figcaption>
+  </figure>
+) : (
+  <div class="grid min-h-72 place-items-center rounded-2xl border border-[#252c34] bg-[radial-gradient(circle_at_20%_20%,rgba(146,255,184,.1),transparent_35%),#101419] text-xs tracking-[.13em] text-[#71808b]">
+    APPROVED SYSTEM SCREENSHOT
+  </div>
+)}
+
+<script>
+  function initSliders() {
+    document.querySelectorAll<HTMLElement>('[data-slider]').forEach((slider) => {
+      if (slider.dataset.sliderInitialized) return;
+      slider.dataset.sliderInitialized = 'true';
+
+      const track = slider.querySelector<HTMLElement>('[data-slider-track]');
+      const prevBtn = slider.querySelector<HTMLButtonElement>('[data-slider-prev]');
+      const nextBtn = slider.querySelector<HTMLButtonElement>('[data-slider-next]');
+      const dots = slider.querySelectorAll<HTMLButtonElement>('[data-slider-dot]');
+      const captionEl = slider.querySelector<HTMLElement>('[data-slider-caption]');
+      const counterEl = slider.querySelector<HTMLElement>('[data-slider-counter]');
+      const slides = slider.querySelectorAll<HTMLElement>('[data-slider-slide]');
+
+      if (!track || slides.length <= 1) return;
+
+      let currentIndex = 0;
+
+      function updateUI(idx: number) {
+        currentIndex = Math.max(0, Math.min(idx, slides.length - 1));
+
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.remove('bg-white/30', 'w-1.5');
+            dot.classList.add('bg-[#92ffb8]', 'w-5');
+          } else {
+            dot.classList.remove('bg-[#92ffb8]', 'w-5');
+            dot.classList.add('bg-white/30', 'w-1.5');
+          }
+        });
+
+        if (counterEl) {
+          counterEl.textContent = `${currentIndex + 1} / ${slides.length}`;
+        }
+
+        if (captionEl && slides[currentIndex]) {
+          const cap = slides[currentIndex].getAttribute('data-caption');
+          if (cap) captionEl.textContent = cap;
+        }
+
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === slides.length - 1;
+      }
+
+      function goToSlide(idx: number) {
+        if (!slides[idx]) return;
+        slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+
+      prevBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentIndex > 0) goToSlide(currentIndex - 1);
+      });
+
+      nextBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          goToSlide(i);
+        });
+      });
+
+      let timeout: any;
+      track.addEventListener('scroll', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+          let bestIdx = 0;
+          let minDistance = Infinity;
+
+          slides.forEach((slide, idx) => {
+            const slideRect = slide.getBoundingClientRect();
+            const slideCenter = slideRect.left + slideRect.width / 2;
+            const distance = Math.abs(slideCenter - trackCenter);
+            if (distance < minDistance) {
+              minDistance = distance;
+              bestIdx = idx;
+            }
+          });
+
+          updateUI(bestIdx);
+        }, 40);
+      }, { passive: true });
+
+      updateUI(0);
+    });
+  }
+
+  initSliders();
+  document.addEventListener('astro:page-load', initSliders);
+</script>
