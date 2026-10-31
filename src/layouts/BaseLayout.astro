@@ -3,8 +3,8 @@ const { title, description = 'Business systems, AI workflows, and automation.', 
 const ar = lang === 'ar';
 const prefix = ar ? '/ar' : '';
 const pages = ar
-  ? [['الرئيسية', '/ar/'], ['الخدمات', '/ar/services'], ['الأعمال', '/ar/work']]
-  : [['Home', '/'], ['Services', '/services'], ['Work', '/work']];
+  ? [['الخدمات', '/ar/services']]
+  : [['Services', '/services']];
 ---
 
 <!doctype html>
@@ -19,7 +19,7 @@ const pages = ar
   <body class="min-h-screen bg-[#090b0d] font-sans text-[#f2f5f7] antialiased">
     <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090b0d]/90 backdrop-blur-xl">
       <nav class="mx-auto flex h-[70px] w-[min(calc(100%-2rem),1180px)] items-center gap-5">
-        <a class="text-lg font-extrabold tracking-[-0.04em]" href={prefix || '/'}>
+        <a class="text-lg font-extrabold tracking-[-0.04em] transition hover:opacity-80" href={ar ? '/ar/' : '/'} aria-label={ar ? 'الصفحة الرئيسية' : 'Home'}>
           <span class="text-[#92ffb8]">IE</span> / {ar ? 'حلول' : 'Solutions'}
         </a>
         <div class="ml-auto flex items-center gap-4 text-sm text-[#98a3ad]">

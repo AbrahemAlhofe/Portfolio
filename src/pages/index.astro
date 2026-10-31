@@ -6,8 +6,13 @@ const heroPhotos = [
   { src: '/hero-photos/meeting.jpeg', alt: 'Ibrahim Elhofy at a professional meeting', position: 'bottom-0 left-[14%] z-10 w-[64%] -rotate-1' }
 ];
 const systems = [
-  { tag: 'Operations transformation', title: 'Centralized production management', text: 'Replaced fragmented spreadsheets with a unified environment for production tracking, workflow coordination, permissions, and reporting.', stats: '81,051 rows · 5+ databases · 40+ employees', href: '/work#operations', image: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel' },
-  { tag: 'AI & automation', title: 'AI-powered book production', text: 'A repeatable operation combining structured AI writing, production tracking, automated PDF creation, and employee workflows.', stats: '50+ books · 250–320 pages · ~$3 per book', href: '/work#ai-books' }
+  { tag: 'Operations transformation', title: 'Centralized production management', text: 'Replaced fragmented spreadsheets with a unified environment for production tracking, workflow coordination, permissions, and reporting.', stats: '81,051 rows · 5+ databases · 40+ employees', service: 'Internal operations system', image: '/case-studies/povo-centralized-production-management.png', alt: 'Povo Studios centralized production-management control panel' },
+  { tag: 'AI & automation', title: 'AI-powered book production', text: 'A repeatable operation combining structured AI writing, production tracking, automated PDF creation, and employee workflows.', stats: '50+ books · 250–320 pages · ~$3 per book', service: 'AI production and automation' }
+];
+const experienceTimeline = [
+  { id: 'operations', step: '01', title: 'Business process transformation & operational excellence', summary: 'Independently analyzed production operations, identified bottlenecks and fragmented workflows, and led process reengineering, digital adoption, and continuous optimization.', achievements: ['Increased monthly production output 92%, from 456 to 876 production hours.', 'Improved QA productivity 40% and reduced reporting turnaround from 3 days to minutes.', 'Led rollout, employee training, and iterative improvement for 40+ employees.', 'Delivered scalable, cost-efficient digital operations with role-based access and version history.'] },
+  { id: 'ai-operations', step: '02', title: 'AI strategy, workflow automation & operations development', summary: 'Established a new AI-enabled production function from the ground up, defining operating procedures, training, performance tracking, and automated delivery workflows.', achievements: ['Produced and delivered 50+ AI-generated books published on Abjjad.', 'Created structured AI instructions for 250-320 page long-form content.', 'Integrated workflow automation and standardized PDF production.', 'Reached approximately $3 variable production cost per book.'] },
+  { id: 'technical-leadership', step: '03', title: 'Technical leadership, product development & observability', summary: 'Led a technical team in translating operational feedback into reliable, scalable, and accessible product priorities for a high-volume production environment.', achievements: ['Established structured team workflows and pull-request reviews.', 'Integrated AWS, Redis, PostgreSQL, and Sentry-based observability.', 'Improved support for Arabic workflows, unstable connectivity, and modest hardware.', 'Supported a QA environment handling approximately 180,000 annotations annually.'] }
 ];
 ---
 
@@ -18,14 +23,41 @@ const systems = [
         <div class="mb-4 text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Business Solutions Developer · Cairo</div>
         <h1 class="max-w-5xl text-5xl font-bold leading-[.93] tracking-[-.065em] sm:text-7xl lg:text-[6.7rem]">I build systems that make businesses <span class="text-[#98a3ad]">move.</span></h1>
         <p class="mt-7 max-w-2xl text-lg text-[#98a3ad]">Self-driven engineer leading business growth through AI, automation, and internal systems—connecting operational reality with the right technology.</p>
-        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="/work">Explore the work →</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/services">Services for businesses</a></div>
+        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="#work">Explore the work →</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/services">Services for businesses</a></div>
       </div>
-      <div class="relative isolate z-0 mx-auto h-[390px] w-full max-w-[430px] sm:h-[460px]">
+      <div class="relative isolate order-first z-0 mx-auto h-[390px] w-full max-w-[430px] lg:order-none sm:h-[460px]">
         {heroPhotos.map((photo, index) => <figure class:list={['absolute overflow-hidden rounded-2xl border border-white/15 bg-[#101419] p-2 shadow-2xl shadow-black/50 transition-transform duration-500 hover:z-40 hover:scale-105 hover:rotate-0', photo.position]}><img class="aspect-[4/5] w-full rounded-xl object-cover" src={photo.src} alt={photo.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} /></figure>)}
       </div>
     </div>
   </section>
-  <section class="border-t border-[#252c34] py-16"><div class="mx-auto grid w-[min(calc(100%-2rem),1180px)] gap-4 md:grid-cols-3">{[['92%','Production output growth'],['40%','QA productivity improvement'],['3 days','System built and deployed']].map(([metric,label]) => <div class="rounded-2xl border border-[#252c34] bg-[#101419] p-7"><b class="block text-4xl tracking-[-.06em]">{metric}</b><span class="text-sm text-[#98a3ad]">{label}</span></div>)}</div></section>
-  <section class="border-t border-[#252c34] py-20"><div class="mx-auto w-[min(calc(100%-2rem),1180px)]"><div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]"><h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Selected systems.</h2><p class="text-lg text-[#98a3ad]">Business-critical platforms shaped by real production environments—not hypothetical portfolio exercises.</p></div>{systems.map((system) => <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]"><div><span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span><h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3><p class="mt-4 text-[#98a3ad]">{system.text}</p><p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p><a class="inline-flex rounded-full border border-[#252c34] px-4 py-2 text-sm font-bold" href={system.href}>Read case study</a></div>{system.image ? <figure class="overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20"><img class="aspect-video w-full rounded-xl object-cover object-top" src={system.image} alt={system.alt} loading="lazy" /><figcaption class="px-2 pb-1 pt-3 text-xs text-[#98a3ad]">Centralized production-management control panel</figcaption></figure> : <div class="grid min-h-72 place-items-center rounded-2xl border border-[#252c34] bg-[radial-gradient(circle_at_20%_20%,rgba(146,255,184,.1),transparent_35%),#101419] text-xs tracking-[.13em] text-[#71808b]">APPROVED SYSTEM SCREENSHOT</div>}</article>)}</div></section>
+  <section class="border-t border-[#252c34] py-20"><div class="mx-auto w-[min(calc(100%-2rem),1180px)]"><div class="mb-10 grid gap-8 md:grid-cols-[.7fr_1.3fr]"><h2 class="text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Services.</h2><p class="text-lg text-[#98a3ad]">Operational systems and AI-enabled workflows shaped by real production environments.</p></div>{systems.map((system) => <article class="grid gap-8 border-t border-[#252c34] py-11 lg:grid-cols-[.86fr_1.14fr]"><div><span class="text-xs font-extrabold uppercase tracking-[.13em] text-[#92ffb8]">{system.tag}</span><h3 class="mt-2 text-3xl font-bold leading-none tracking-[-.05em]">{system.title}</h3><p class="mt-4 text-[#98a3ad]">{system.text}</p><p class="my-5 text-sm text-[#c5cdd3]">{system.stats}</p><a class="inline-flex rounded-full bg-[#92ffb8] px-4 py-2 text-sm font-bold text-[#071009]" href={`/quote?service=${encodeURIComponent(system.service)}`}>Get a quote for a similar system</a></div>{system.image ? <figure class="overflow-hidden rounded-2xl border border-[#252c34] bg-[#101419] p-2 shadow-xl shadow-black/20"><img class="aspect-video w-full rounded-xl object-cover object-top" src={system.image} alt={system.alt} loading="lazy" /><figcaption class="px-2 pb-1 pt-3 text-xs text-[#98a3ad]">Centralized production-management control panel</figcaption></figure> : <div class="grid min-h-72 place-items-center rounded-2xl border border-[#252c34] bg-[radial-gradient(circle_at_20%_20%,rgba(146,255,184,.1),transparent_35%),#101419] text-xs tracking-[.13em] text-[#71808b]">APPROVED SYSTEM SCREENSHOT</div>}</article>)}</div></section>
+  <section id="work" class="border-t border-[#252c34] py-20">
+    <div class="mx-auto w-[min(calc(100%-2rem),1180px)]">
+      <div class="mb-12 grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <div><p class="text-xs font-extrabold uppercase tracking-[.15em] text-[#92ffb8]">Aug 2023 - Present · Povo Studios</p><h2 class="mt-4 text-4xl font-bold leading-none tracking-[-.055em] sm:text-6xl">Professional experience.</h2></div>
+        <p class="text-lg text-[#98a3ad]">Full Stack Engineer, R&D Department. A chronological record of self-initiated operational transformation, AI operations, and technical leadership—measured by business outcomes.</p>
+      </div>
+      <div class="relative before:absolute before:bottom-0 before:left-3.5 before:top-0 before:w-px before:bg-[#252c34]">
+        {experienceTimeline.map((entry) => (
+          <article id={entry.id} class="relative pb-14 pl-12 sm:pl-14 last:pb-0">
+            <span class="absolute left-3.5 top-0 z-10 grid size-7 -translate-x-1/2 place-items-center rounded-full border border-[#92ffb8]/40 bg-[#090b0d] text-xs font-bold text-[#92ffb8]">{entry.step}</span>
+            <div class="grid gap-6 md:grid-cols-[10rem_1fr] md:gap-8">
+              <div>
+                <p class="text-sm font-bold text-[#c5cdd3]">Povo Studios</p>
+                <p class="mt-1 text-xs uppercase tracking-[.13em] text-[#92ffb8]">Milestone {entry.step}</p>
+              </div>
+              <div>
+                <h3 class="text-3xl font-bold leading-none tracking-[-.05em]">{entry.title}</h3>
+                <p class="mt-4 max-w-3xl text-[#98a3ad]">{entry.summary}</p>
+                <ul class="mt-6 grid gap-3 text-sm text-[#c5cdd3] sm:grid-cols-2">
+                  {entry.achievements.map((achievement) => <li class="border-l border-[#92ffb8]/50 pl-3">{achievement}</li>)}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
   <section class="border-t border-[#252c34] py-20"><div class="mx-auto flex w-[min(calc(100%-2rem),1180px)] flex-col justify-between gap-6 rounded-3xl border border-[#252c34] bg-gradient-to-r from-[#11171b] to-[#0e1511] p-10 md:flex-row md:items-center"><h2 class="max-w-2xl text-4xl font-bold leading-none tracking-[-.055em]">Have an operation that has outgrown spreadsheets?</h2><div class="flex flex-wrap gap-3"><a class="rounded-full bg-[#92ffb8] px-5 py-3 font-bold text-[#071009]" href="mailto:ibrahim.ali.elhofy@gmail.com?subject=Free%201-hour%20consultation">Book a free 1-hour consultation</a><a class="rounded-full border border-[#252c34] px-5 py-3 font-bold" href="/quote">Get a quote</a></div></div></section>
 </BaseLayout>
